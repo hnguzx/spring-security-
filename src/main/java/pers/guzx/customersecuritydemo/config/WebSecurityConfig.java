@@ -4,11 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.vote.AbstractAccessDecisionManager;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,7 +15,6 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pers.guzx.customersecuritydemo.authentication.AuthenticationFilter;
 import pers.guzx.customersecuritydemo.authentication.AuthenticationProviderImpl;
-import pers.guzx.customersecuritydemo.authorize.UrlMatchAccessDecisionManager;
 import pers.guzx.customersecuritydemo.authorize.UrlMatchVoter;
 import pers.guzx.customersecuritydemo.handle.*;
 
@@ -31,6 +28,7 @@ import javax.annotation.Resource;
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
@@ -50,8 +48,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationProviderImpl authProvider;
 
     @Resource
-    private UrlMatchAccessDecisionManager decisionManager;
-    @Resource
     private UrlMatchVoter urlMatchVoter;
 
     @Override
@@ -62,13 +58,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                // 自定义授权
-//                .accessDecisionManager(decisionManager)
                 .antMatchers("/common/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/private/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
+                // 自定义授权
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
                     @Override
                     public <O extends FilterSecurityInterceptor> O postProcess(O object) {
@@ -94,7 +89,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout").logoutSuccessHandler(logoutSuccessHandle).deleteCookies()
                 .and()
                 .rememberMe().rememberMeParameter("remember").tokenValiditySeconds(300)
-//                .rememberMeServices()
                 .and()
                 .sessionManagement()
                 .maximumSessions(1).expiredSessionStrategy(loginTimeout);

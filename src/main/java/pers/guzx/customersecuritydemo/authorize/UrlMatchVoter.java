@@ -47,11 +47,11 @@ public class UrlMatchVoter implements AccessDecisionVoter<Object> {
             }
 
             SysAuthority urlGrantedAuthority = (SysAuthority) authority;
-            if (Objects.isNull(urlGrantedAuthority.getUrl())) {
+            if (Objects.isNull(urlGrantedAuthority.getAuthority())) {
                 continue;
             }
             //AntPathRequestMatcher进行匹配，url支持ant风格（如：/user/**）
-            AntPathRequestMatcher antPathRequestMatcher = new AntPathRequestMatcher(urlGrantedAuthority.getUrl());
+            AntPathRequestMatcher antPathRequestMatcher = new AntPathRequestMatcher(urlGrantedAuthority.getAuthority());
 
             if (antPathRequestMatcher.matches(((FilterInvocation) object).getRequest())) {
                 hasPerm = true;

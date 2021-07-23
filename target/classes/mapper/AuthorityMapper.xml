@@ -4,7 +4,6 @@
 <mapper namespace="pers.guzx.customersecuritydemo.mapper.AuthorityMapper">
     <resultMap id="BaseResultMap" type="pers.guzx.customersecuritydemo.entity.SysAuthority">
         <id column="id" property="id"/>
-        <result column="name" property="name"/>
         <result column="code" property="code"/>
         <result column="url" property="url"/>
     </resultMap>

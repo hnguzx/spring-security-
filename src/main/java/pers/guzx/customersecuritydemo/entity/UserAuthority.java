@@ -18,10 +18,7 @@ import javax.persistence.Table;
 public class UserAuthority {
     @Id
     @GeneratedValue(generator = "JDBC")
-    @Column(name = "id")
     private Integer id;
-    @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "authority_id")
     private Integer authorityId;
 }

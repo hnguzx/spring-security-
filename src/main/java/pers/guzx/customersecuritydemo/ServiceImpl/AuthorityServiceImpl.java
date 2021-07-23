@@ -1,5 +1,6 @@
 package pers.guzx.customersecuritydemo.ServiceImpl;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import pers.guzx.customersecuritydemo.entity.*;
 import pers.guzx.customersecuritydemo.mapper.AuthorityMapper;
@@ -36,9 +37,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<SysAuthority> getAuthorityById(List<UserAuthority> userAuthorities) {
+    public List<GrantedAuthority> getAuthorityById(List<UserAuthority> userAuthorities) {
 
-        List<SysAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         userAuthorities.stream().map(userAuthority -> {
             Example example = new Example(SysAuthority.class);
             Example.Criteria criteria = example.createCriteria();
@@ -58,9 +59,9 @@ public class AuthorityServiceImpl implements AuthorityService {
         return userAuthorities;
     }
 
-    public List<SysAuthority> getAuthorityByRole(SysRole role) {
+    public List<GrantedAuthority> getAuthorityByRole(SysRole role) {
 
-        List<SysAuthority> authorities = new ArrayList<>();
+        List<GrantedAuthority> authorities = new ArrayList<>();
         Example example = new Example(RoleAuthority.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("roleId", role.getId());

@@ -19,16 +19,12 @@ import java.util.List;
  * @describe 系统用户 一个用户在系统中只有一个角色，多个权限
  */
 @Setter
-@Table(name = "sys_user")
 public class SysUser implements UserDetails {
 
     @Id
     @GeneratedValue(generator = "JDBC")
-    @Column(name = "id")
     private Integer id;
-    @Column(name = "username")
     private String username;
-    @Column(name = "password")
     private String password;
 
     @Column(name = "account_expired")
@@ -40,8 +36,7 @@ public class SysUser implements UserDetails {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    private SysRole roles;
-    private List<SysAuthority> authorities;
+    private List<GrantedAuthority> authorities;
 
 
     @Override
@@ -61,10 +56,6 @@ public class SysUser implements UserDetails {
 
     public Integer getId() {
         return id;
-    }
-
-    public SysRole getRoles() {
-        return roles;
     }
 
     @Override

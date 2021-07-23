@@ -18,10 +18,7 @@ import javax.persistence.Table;
 public class UserRole {
     @Id
     @GeneratedValue(generator = "JDBC")
-    @Column(name = "id")
     private Integer id;
-    @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "role_id")
     private Integer roleId;
 }

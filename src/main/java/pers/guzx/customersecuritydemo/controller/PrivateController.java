@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Guzx
  * @version 1.0
  * @date 2021/7/20 14:16
- * @describe 如果方法上有对权限进行校验，则以方法上的权限要求为准
+ * @describe
  */
 @RestController
 @RequestMapping("/private")
 public class PrivateController {
 
-//    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping("/demo")
     public String demo() {
         return "private";
     }
 
-//    @PreAuthorize("hasRole('USER')")
     @GetMapping("/query")
     public String query() {
         return "private query";

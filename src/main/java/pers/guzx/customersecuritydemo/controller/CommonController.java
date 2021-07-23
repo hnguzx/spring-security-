@@ -23,38 +23,6 @@ import java.util.List;
 @RequestMapping("/common")
 public class CommonController {
 
-    @Resource
-    private UserServiceImpl userService;
-    @Resource
-    private AuthorityServiceImpl authorityService;
-    @Resource
-    private RoleServiceImpl roleService;
-
-    @Resource
-    private UserAuthDetailsServiceImpl userAuthDetailsService;
-
-    @Resource
-    private PasswordEncoder passwordEncoder;
-
-    @GetMapping("/demo")
-    public Object demo() {
-        SysUser user = new SysUser();
-        user.setUsername("test");
-        user.setPassword(passwordEncoder.encode("123456"));
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEnabled(true);
-
-        return userService.saveUser(user);
-    }
-
-    /*@PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-        SysUser user = (SysUser) userAuthDetailsService.loadUserByUsername(username);
-        return user.getAuthorities().toString();
-    }*/
-
     @GetMapping("/query")
     public String query() {
         return "common";

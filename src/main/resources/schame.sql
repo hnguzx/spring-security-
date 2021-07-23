@@ -35,7 +35,6 @@ DROP TABLE IF EXISTS sys_authority;
 CREATE TABLE sys_authority
 (
     id   int(10)                                                 NOT NULL AUTO_INCREMENT COMMENT '主键',
-    name varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限名称',
     code varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '权限代码',
     url  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源路径',
     PRIMARY KEY (id) USING BTREE

@@ -1,5 +1,6 @@
 package pers.guzx.customersecuritydemo.service;
 
+        import org.springframework.security.core.GrantedAuthority;
         import pers.guzx.customersecuritydemo.entity.*;
 
         import java.util.List;
@@ -13,7 +14,7 @@ package pers.guzx.customersecuritydemo.service;
 public interface AuthorityService {
     UserAuthority getUserAuthority(Integer userId);
 
-    List<SysAuthority> getAuthorityById(List<UserAuthority> userAuthorities);
+    List<GrantedAuthority> getAuthorityById(List<UserAuthority> userAuthorities);
 
     List<UserAuthority> getUserAuthorityByUser(SysUser user);
 }

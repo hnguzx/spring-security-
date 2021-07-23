@@ -1,5 +1,6 @@
 package pers.guzx.customersecuritydemo.ServiceImpl;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,12 +35,10 @@ public class UserAuthDetailsServiceImpl implements UserDetailsService {
         SysUser user = userService.getUserByUsername(username);
         UserRole userRoleByUser = roleService.getUserRoleByUser(user);
         SysRole role = roleService.getRoleById(userRoleByUser);
-        user.setRoles(role);
 
         List<UserAuthority> userAuthorityByUser = authorityService.getUserAuthorityByUser(user);
-        List<SysAuthority> authority = authorityService.getAuthorityById(userAuthorityByUser);
-        List<SysAuthority> authorityByRole = authorityService.getAuthorityByRole(role);
-        authority.addAll(authorityByRole);
+        List<GrantedAuthority> authority = authorityService.getAuthorityById(userAuthorityByUser);
+        authority.add(role);
         user.setAuthorities(authority);
         return user;
     }
