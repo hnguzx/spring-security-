@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
-import pers.guzx.customersecuritydemo.entity.SysAuthority;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -42,16 +41,15 @@ public class UrlMatchVoter implements AccessDecisionVoter<Object> {
         boolean hasPerm = false;
 
         for (GrantedAuthority authority : authorities) {
-            if (!(authority instanceof SysAuthority)) {
+            if (authority == null) {
                 continue;
             }
 
-            SysAuthority urlGrantedAuthority = (SysAuthority) authority;
-            if (Objects.isNull(urlGrantedAuthority.getAuthority())) {
+            if (Objects.isNull(authority.getAuthority())) {
                 continue;
             }
             //AntPathRequestMatcher进行匹配，url支持ant风格（如：/user/**）
-            AntPathRequestMatcher antPathRequestMatcher = new AntPathRequestMatcher(urlGrantedAuthority.getAuthority());
+            AntPathRequestMatcher antPathRequestMatcher = new AntPathRequestMatcher(authority.getAuthority());
 
             if (antPathRequestMatcher.matches(((FilterInvocation) object).getRequest())) {
                 hasPerm = true;

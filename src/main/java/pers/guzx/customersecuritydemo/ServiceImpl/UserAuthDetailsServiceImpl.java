@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pers.guzx.customersecuritydemo.entity.*;
-import pers.guzx.customersecuritydemo.mapper.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,9 +31,9 @@ public class UserAuthDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SysUser user = userService.getUserByUsername(username);
+        SysUserDetails user = (SysUserDetails) userService.getUserByUsername(username);
         UserRole userRoleByUser = roleService.getUserRoleByUser(user);
-        SysRole role = roleService.getRoleById(userRoleByUser);
+        GrantedAuthority role = roleService.getRoleById(userRoleByUser);
 
         List<UserAuthority> userAuthorityByUser = authorityService.getUserAuthorityByUser(user);
         List<GrantedAuthority> authority = authorityService.getAuthorityById(userAuthorityByUser);

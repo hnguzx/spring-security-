@@ -19,7 +19,8 @@ import java.util.List;
  * @describe 系统用户 一个用户在系统中只有一个角色，多个权限
  */
 @Setter
-public class SysUser implements UserDetails {
+@Table(name = "sys_user")
+public class SysUserDetails implements UserDetails {
 
     @Id
     @GeneratedValue(generator = "JDBC")

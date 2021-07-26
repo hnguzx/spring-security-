@@ -1,19 +1,18 @@
 package pers.guzx.customersecuritydemo.ServiceImpl;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pers.guzx.customersecuritydemo.entity.*;
 import pers.guzx.customersecuritydemo.mapper.AuthorityMapper;
 import pers.guzx.customersecuritydemo.mapper.RoleAuthorityMapper;
 import pers.guzx.customersecuritydemo.mapper.UserAuthorityMapper;
-import pers.guzx.customersecuritydemo.mapper.UserRoleMapper;
 import pers.guzx.customersecuritydemo.service.AuthorityService;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 /**
  * @author Guzx
@@ -51,10 +50,10 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public List<UserAuthority> getUserAuthorityByUser(SysUser user) {
+    public List<UserAuthority> getUserAuthorityByUser(UserDetails user) {
         Example example = new Example(UserAuthority.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("userId", user.getId());
+        criteria.andEqualTo("userId", ((SysUserDetails) user).getId());
         List<UserAuthority> userAuthorities = userAuthorityMapper.selectByExample(example);
         return userAuthorities;
     }

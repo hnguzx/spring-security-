@@ -1,6 +1,5 @@
 package pers.guzx.customersecuritydemo.authentication;
 
-import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -17,10 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pers.guzx.customersecuritydemo.ServiceImpl.UserAuthDetailsServiceImpl;
-import pers.guzx.customersecuritydemo.entity.SysUser;
 
 import javax.annotation.Resource;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Guzx
@@ -50,7 +47,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = determineUsername(authentication);
         UserDetails user = null;
-//        user = JSONObject.parseObject((String) redisTemplate.opsForHash().get("user", username), SysUser.class);
+//        user = JSONObject.parseObject((String) redisTemplate.opsForHash().get("user", username), SysUserDetails.class);
         if (user == null) {
             try {
                 user = retrieveUser(username, (AuthenticationToken) authentication);

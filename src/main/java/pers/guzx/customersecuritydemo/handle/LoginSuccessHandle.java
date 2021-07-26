@@ -3,14 +3,13 @@ package pers.guzx.customersecuritydemo.handle;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import pers.guzx.customersecuritydemo.ServiceImpl.UserAuthDetailsServiceImpl;
 import pers.guzx.customersecuritydemo.ServiceImpl.UserServiceImpl;
 import pers.guzx.customersecuritydemo.entity.JsonDto;
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import pers.guzx.customersecuritydemo.entity.SysUserDetails;
 
 import javax.annotation.Resource;
 import javax.servlet.FilterChain;
@@ -44,9 +43,9 @@ public class LoginSuccessHandle implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         //更新用户表上次登录时间、更新人、更新时间等字段
-        SysUser user = (SysUser) authentication.getPrincipal();
+        SysUserDetails user = (SysUserDetails) authentication.getPrincipal();
 
-//        SysUser byUserName = userService.getUserByUsername(user.getUsername());
+//        SysUserDetails byUserName = userService.getUserByUsername(user.getUsername());
         UserDetails userDetails = userAuthDetailsService.loadUserByUsername(user.getUsername());
 
         //此处还可以进行一些处理，比如登录成功之后可能需要返回给前台当前用户有哪些菜单权限，

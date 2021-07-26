@@ -1,8 +1,10 @@
 package pers.guzx.customersecuritydemo.ServiceImpl;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pers.guzx.customersecuritydemo.entity.SysRole;
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import pers.guzx.customersecuritydemo.entity.SysUserDetails;
 import pers.guzx.customersecuritydemo.entity.UserRole;
 import pers.guzx.customersecuritydemo.mapper.RoleMapper;
 import pers.guzx.customersecuritydemo.mapper.UserRoleMapper;
@@ -10,12 +12,7 @@ import pers.guzx.customersecuritydemo.service.RoleService;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 /**
  * @author Guzx
@@ -37,16 +34,16 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public SysRole getRoleById(UserRole userRole) {
+    public GrantedAuthority getRoleById(UserRole userRole) {
         SysRole role = roleMapper.selectByPrimaryKey(userRole.getRoleId());
         return role;
     }
 
     @Override
-    public UserRole getUserRoleByUser(SysUser user) {
+    public UserRole getUserRoleByUser(UserDetails user) {
         Example example = new Example(UserRole.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("userId", user.getId());
+        criteria.andEqualTo("userId", ((SysUserDetails) user).getId());
         List<UserRole> userRoles = userRoleMapper.selectByExample(example);
         if (userRoles.size() > 0) {
             return userRoles.get(0);

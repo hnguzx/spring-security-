@@ -1,7 +1,8 @@
 package pers.guzx.customersecuritydemo.ServiceImpl;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import pers.guzx.customersecuritydemo.entity.SysUserDetails;
 import pers.guzx.customersecuritydemo.mapper.UserMapper;
 import pers.guzx.customersecuritydemo.service.UserService;
 import tk.mybatis.mapper.entity.Example;
@@ -22,18 +23,18 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public SysUser getUserByUsername(String username) {
-        Example example = new Example(SysUser.class);
+    public UserDetails getUserByUsername(String username) {
+        Example example = new Example(SysUserDetails.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("username", username);
-        List<SysUser> sysUsers = userMapper.selectByExample(example);
-        if (sysUsers.size() > 0) {
-            return sysUsers.get(0);
+        List<SysUserDetails> sysUserDetails = userMapper.selectByExample(example);
+        if (sysUserDetails.size() > 0) {
+            return sysUserDetails.get(0);
         }
         return null;
     }
 
-    public SysUser saveUser(SysUser user){
+    public SysUserDetails saveUser(SysUserDetails user){
         userMapper.insert(user);
         return user;
     }

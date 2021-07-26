@@ -1,8 +1,6 @@
 package pers.guzx.customersecuritydemo.mapper;
 
-
-import org.springframework.stereotype.Repository;
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import pers.guzx.customersecuritydemo.entity.SysUserDetails;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -11,5 +9,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @date 2021/7/19 10:23
  * @describe
  */
-public interface UserMapper extends Mapper<SysUser> {
+public interface UserMapper extends Mapper<SysUserDetails> {
 }

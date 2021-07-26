@@ -2,11 +2,11 @@ package pers.guzx.customersecuritydemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.stereotype.Repository;
 import tk.mybatis.spring.annotation.MapperScan;
 
+/**
+ * @author Administrator
+ */
 @MapperScan(basePackages = "pers.guzx.customersecuritydemo.mapper")
 @SpringBootApplication
 public class CustomerSecurityDemoApplication {

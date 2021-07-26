@@ -1,10 +1,6 @@
 package pers.guzx.customersecuritydemo.mapper;
 
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import pers.guzx.customersecuritydemo.entity.SysRole;
-import pers.guzx.customersecuritydemo.entity.SysUser;
 import tk.mybatis.mapper.common.Mapper;
 
 /**

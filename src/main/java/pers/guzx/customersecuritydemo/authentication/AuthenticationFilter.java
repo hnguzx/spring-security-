@@ -1,9 +1,7 @@
 package pers.guzx.customersecuritydemo.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -18,7 +16,6 @@ import pers.guzx.customersecuritydemo.code.ErrorCode;
 import pers.guzx.customersecuritydemo.util.EmailUtil;
 import pers.guzx.customersecuritydemo.util.MobileUtil;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

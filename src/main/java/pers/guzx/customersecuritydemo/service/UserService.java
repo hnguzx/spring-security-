@@ -1,6 +1,6 @@
 package pers.guzx.customersecuritydemo.service;
 
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * @author Guzx
@@ -9,5 +9,5 @@ import pers.guzx.customersecuritydemo.entity.SysUser;
  * @describe
  */
 public interface UserService {
-    SysUser getUserByUsername(String username);
+    UserDetails getUserByUsername(String username);
 }

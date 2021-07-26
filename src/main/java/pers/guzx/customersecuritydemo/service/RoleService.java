@@ -1,10 +1,8 @@
 package pers.guzx.customersecuritydemo.service;
 
-import pers.guzx.customersecuritydemo.entity.SysRole;
-import pers.guzx.customersecuritydemo.entity.SysUser;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import pers.guzx.customersecuritydemo.entity.UserRole;
-
-import java.util.List;
 
 /**
  * @author Guzx
@@ -15,7 +13,7 @@ import java.util.List;
 public interface RoleService {
     UserRole getUserRole(Integer userId);
 
-    SysRole getRoleById(UserRole userRoles);
+    GrantedAuthority getRoleById(UserRole userRoles);
 
-    UserRole getUserRoleByUser(SysUser user);
+    UserRole getUserRoleByUser(UserDetails user);
 }
