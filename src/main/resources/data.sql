@@ -8,9 +8,9 @@ VALUES (2, 'user', '$2a$10$ulkiGnJtG50ma2Xdi11HZOiuBzCFHyhPiMg9J/.N/uahXJelf33fK
         b'1');
 
 INSERT INTO sys_role(id, name)
-VALUES (1, 'ADMIN');
+VALUES (1, 'ROLE_ADMIN');
 INSERT INTO sys_role(id, name)
-VALUES (2, 'USER');
+VALUES (2, 'ROLE_USER');
 
 INSERT INTO sys_authority(id, code, url)
 VALUES (1, '100000', '/admin/demo');

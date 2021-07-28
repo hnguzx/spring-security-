@@ -1,4 +1,4 @@
-package pers.guzx.customersecuritydemo.authentication;
+package pers.guzx.customersecuritydemo.handle;
 
 import org.springframework.security.core.AuthenticationException;
 

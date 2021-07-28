@@ -6,7 +6,6 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
-import pers.guzx.customersecuritydemo.authentication.BadVerificationCodeException;
 import pers.guzx.customersecuritydemo.code.ErrorCode;
 import pers.guzx.customersecuritydemo.entity.JsonDto;
 

@@ -25,11 +25,11 @@ public class SysRole implements GrantedAuthority {
     private List<SysAuthority> sysAuthorities;
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public List<SysAuthority> getSysAuthorities() {
-        return sysAuthorities;
+        return this.sysAuthorities;
     }
 
     @Override

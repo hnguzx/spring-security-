@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import pers.guzx.customersecuritydemo.ServiceImpl.UserAuthDetailsServiceImpl;
+import pers.guzx.customersecuritydemo.handle.BadVerificationCodeException;
 
 import javax.annotation.Resource;
 
