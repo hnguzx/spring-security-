@@ -3,6 +3,7 @@ package pers.guzx.customersecuritydemo.handle;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ import java.io.IOException;
  * @author Guzx
  * @version 1.0
  * @date 2021/7/7 16:18
- * @describe
+ * @describe 登录成功后处理
  */
 @Slf4j
 @Component

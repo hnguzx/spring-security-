@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Guzx
  * @version 1.0
  * @date 2021/7/7 16:26
- * @describe
+ * @describe 退出系统成功
  */
 @Slf4j
 @Component

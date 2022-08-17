@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author Guzx
  * @version 1.0
  * @date 2021/7/7 16:36
- * @describe
+ * @describe 登录超时
  */
 @Slf4j
 @Component

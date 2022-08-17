@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author Guzx
  * @version 1.0
  * @date 2021/7/7 16:22
- * @describe
+ * @describe 登录失败处理
  */
 @Slf4j
 @Component
@@ -34,7 +34,7 @@ public class LoginFailHandle implements AuthenticationFailureHandler {
         } else if (e instanceof BadVerificationCodeException) {
             //验证码错误
             result = JsonDto.retFail(ErrorCode.VERIFY_NOT_FOUND);
-        }else if (e instanceof CredentialsExpiredException) {
+        } else if (e instanceof CredentialsExpiredException) {
             //密码过期
             result = JsonDto.retFail(ErrorCode.USER_CREDENTIALS_EXPIRED);
         } else if (e instanceof DisabledException) {
@@ -47,6 +47,7 @@ public class LoginFailHandle implements AuthenticationFailureHandler {
             //用户不存在
             result = JsonDto.retFail(ErrorCode.USER_ACCOUNT_NOT_EXIST);
         } else {
+            log.info("login failed:", e);
             //其他错误
             result = JsonDto.retFail(ErrorCode.INTERNAL_SERVER_ERROR);
         }

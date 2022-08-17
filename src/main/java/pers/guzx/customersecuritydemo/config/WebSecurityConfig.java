@@ -51,6 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private UrlMatchVoter urlMatchVoter;
 
+    //@Resource
+    //private AuthenticationFilter authentication;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -59,10 +62,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/common/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/private/**").hasRole("ADMIN")
+                //.antMatchers("/common/**").permitAll()
+                //.antMatchers("/admin/**").hasRole("ADMIN")
+                //.antMatchers("/user/**").hasRole("USER")
+                //.antMatchers("/private/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 // 自定义授权
                 .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {

@@ -2,6 +2,7 @@ package pers.guzx.customersecuritydemo.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -11,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import pers.guzx.customersecuritydemo.code.ErrorCode;
 import pers.guzx.customersecuritydemo.util.EmailUtil;
@@ -29,6 +31,7 @@ import java.util.Map;
  * @describe 自定义认证过滤器。参考：UsernamePasswordAuthenticationFilter
  */
 @Slf4j
+//@Component
 public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER =
@@ -58,7 +61,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        if (this.postOnly && !request.getMethod().equals("POST")) {
+        if (this.postOnly && !request.getMethod().equals(HttpMethod.POST.name())) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }
         String username = "";

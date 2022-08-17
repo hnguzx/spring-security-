@@ -27,7 +27,7 @@ import javax.annotation.Resource;
  * @describe 自定义认证校验器。参考：AbstractUserDetailsAuthenticationProvider
  */
 
-@Data
+//@Data
 @Slf4j
 @Configuration
 public class AuthenticationProviderImpl implements AuthenticationProvider {
@@ -59,13 +59,16 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         }
 
         try {
+            // 预校验-验证账号是否被冻结，是否启用，是否过期
             this.preAuthenticationChecks.check(user);
+            // 附加校验-验证登录信息，如用户名密码等，可自定义
             additionalAuthenticationChecks(user, (AuthenticationToken) authentication);
         } catch (AuthenticationException ex) {
             user = retrieveUser(username, (AuthenticationToken) authentication);
             this.preAuthenticationChecks.check(user);
             additionalAuthenticationChecks(user, (AuthenticationToken) authentication);
         }
+        // 后校验-校验证书是否到期
         this.postAuthenticationChecks.check(user);
         // 认证成功后将principal设置为用户信息
         Object principalToReturn = user;
